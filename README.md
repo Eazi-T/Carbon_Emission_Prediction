@@ -90,4 +90,4 @@ A green transition combining maximum renewable deployment with reduced energy co
 
 - **Data Source:** [World Bank Open Data](https://data.worldbank.org/) — CO₂ emissions, GDP per capita, energy use, renewable energy, urban population, industry value added, population growth
 - **Methodology:** CRISP-DM (Cross-Industry Standard Process for Data Mining)
-- **Blog Post:** [Read the non-technical writeup on Medium](#) ← *replace with your Medium link*
+- **Blog Post:** [Read the non-technical writeup on Medium](https://medium.com/@israeltemidayo24/nigerias-carbon-crossroads-can-a-green-transition-reverse-rising-emissions-06adad0a81e9)
