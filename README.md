@@ -1,7 +1,5 @@
 # Nigeria's Carbon Crossroads: Predicting CO₂ Emissions with Machine Learning
 
-![Nigeria CO2 Emissions](scenario_predictions.png)
-
 ## Motivation
 
 Nigeria is urbanizing rapidly, its economy is growing, and energy demand is climbing. But what is actually driving its CO₂ emissions — and can socioeconomic indicators help us predict and understand future trajectories? This project applies the CRISP-DM data science process to three decades of World Bank data (1990–2023) to answer that question.
@@ -31,15 +29,8 @@ Nigeria is urbanizing rapidly, its economy is growing, and energy demand is clim
 
 | File | Description |
 |---|---|
-| `nigeria_co2_analysis.ipynb` | Main Jupyter notebook with full analysis, comments, and visualizations |
-| `nigeria_co2_data.csv` | Raw dataset (World Bank, 1990–2023) containing CO₂, GDP per capita, energy use, renewable share, industry %, urban population %, and population growth |
-| `feature_distributions.png` | Distribution plots for all features (1990–2023) |
-| `correlation_heatmap.png` | Pearson correlation heatmap across all features and CO₂ |
-| `industry_co2.png` | Dual-axis line plot showing diverging Industry vs CO₂ trends |
-| `co2_model_evaluation.png` | 2×2 dashboard: feature importance, model comparison, actual vs predicted |
-| `ridge_coefficients.png` | Ridge regression standardized coefficients and residual plot |
-| `shap_analysis.png` | SHAP beeswarm, bar, dependence, and waterfall plots for XGBoost |
-| `scenario_predictions.png` | What-if scenario analysis chart anchored to 2023 actual values |
+| `CO2_Emission_Prediction.ipynb` | Main Jupyter notebook with full analysis, comments, and visualizations |
+| `Co2_data.xlsx` | Raw dataset (World Bank, 1990–2023) containing CO₂, GDP per capita, energy use, renewable share, industry %, urban population %, and population growth |
 | `README.md` | This file |
 
 ---
@@ -52,6 +43,17 @@ Nigeria is urbanizing rapidly, its economy is growing, and energy demand is clim
 - Industry's share of GDP *fell* from ~37% to ~18% over the period — a counterintuitive finding given rising emissions
 - Renewable energy share and CO₂ showed the strongest correlation (r = −0.94)
 - Year and Urban population were found to be perfectly collinear (r = 1.00); Year was dropped
+
+### Data Preprocessing
+- Filtered out pre-1990 observations (inconsistent reporting standards)
+- Dropped **Year** column — perfectly collinear with Urban (r = 1.00)
+- Applied **log transformation** to GDP per capita to correct heavy right skew
+- Dropped 2024 row due to missing values
+- Filled missing features in 2023 with interpolation to keep trend
+- Final dataset: **34 observations × 6 features**
+- Features used: `Renewable`, `Energy`, `Urban`, `GDP_pc` (log), `Industry`, `PopGrowth`
+- Target variable: `CO2` (Mt)
+- StandardScaler applied to all features before Ridge Regression training
 
 ### Modeling
 Two models were evaluated using Leave-One-Out cross-validation (LOO) — appropriate for the small dataset of 34 observations:
